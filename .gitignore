@@ -1,0 +1,75 @@
+# Python
+*.py[cod]
+__pycache__/
+*.pyo
+*.pyd
+*.pyc
+*.pyd
+.python-version
+venv/
+env/
+.venv/
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+
+# Django
+*.sqlite3
+db.sqlite3
+/media/
+staticfiles/
+static/
+
+# Environment / secrets
+.env
+.env.local
+.env.*.local
+apps/levantis-api/.env
+apps/levantis-web/.env.local
+*.secret
+*.key
+
+# Node / Next.js
+node_modules/
+.npm/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnp.*
+.pnp.js
+.next/
+out/
+build/
+
+# Docker
+docker-compose.override.yml
+docker-compose.*.yml
+docker/*.log
+
+# Editor / IDE
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Testing / coverage
+.pytest_cache/
+coverage.xml
+.coverage
+htmlcov/
+.tox/
+
+# Logs
+*.log
+logs/
+tmp/
+
+# Misc
+*.swp
+*.DS_Store
