@@ -5,13 +5,13 @@ services:
     environment:
       POSTGRES_DB: levantis
       POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"
     volumes:
       - db_data:/var/lib/postgresql/data
     ports:
       - "5432:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-levantis} || exit 1"]
+      test: ["CMD-SHELL","pg_isready -U ${POSTGRES_USER:-postgres} -d ${POSTGRES_DB:-levantis} || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -21,7 +21,7 @@ services:
     ports:
       - "6379:6379"
     healthcheck:
-      test: ["CMD", "redis-cli", "ping"]
+      test: ["CMD","redis-cli","ping"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -32,10 +32,9 @@ services:
     env_file:
       - ./apps/levantis-api/.env
     environment:
-      # Override hosts to point to compose service names
+      POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"   # use same top-level password
       POSTGRES_HOST: db
       REDIS_HOST: redis
-      # optional overrides
       DJANGO_DEBUG: "1"
       DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1"
     volumes:
@@ -48,34 +47,42 @@ services:
     ports:
       - "8000:8000"
     command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
-    restart: unless-stopped
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "python - <<'PY'\nimport urllib.request,sys\ntry:\n  r=urllib.request.urlopen('http://localhost:8000/api/health/', timeout=3)\n  sys.exit(0 if r.getcode()==200 else 1)\nexcept Exception:\n  sys.exit(1)\nPY"
+        ]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+      start_period: 20s
 
   web:
     build:
       context: ./apps/levantis-web
     environment:
-      # point to nginx inside the compose network
-      - NEXT_PUBLIC_API_BASE=http://nginx/api
+      - LEVANTIS_API_BASE=http://nginx/api
     volumes:
       - ./apps/levantis-web:/app
       - /app/node_modules
     depends_on:
-      - api
+      api:
+        condition: service_started
     ports:
       - "3000:3000"
-    command: sh -c "npm run dev"
-    restart: unless-stopped
+    command: sh -c "npm run dev -- -H 0.0.0.0 -p 3000"
 
   nginx:
     image: nginx:alpine
     volumes:
       - ./infra/nginx/default.conf:/etc/nginx/conf.d/default.conf:ro
     depends_on:
-      - api
-      - web
+      api:
+        condition: service_healthy
+      web:
+        condition: service_started
     ports:
       - "8080:80"
-    restart: unless-stopped
-
 volumes:
   db_data:
