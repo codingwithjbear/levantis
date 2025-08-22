@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="394" height="80" viewBox="0 0 394 80">
+  <style>
+    .word { font-family: Georgia, "Times New Roman", Times, serif;
+             font-weight: 700; font-size: 56px; letter-spacing: -0.01em; }
+  </style>
+  <text x="50%" y="58%" text-anchor="middle" dominant-baseline="middle" class="word" fill="#0B3255">Levantis</text>
+</svg>
