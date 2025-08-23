@@ -30,7 +30,7 @@ services:
     build:
       context: ./apps/levantis-api
     env_file:
-      - ./apps/levantis-api/.env
+      - ./.env
     environment:
       POSTGRES_PASSWORD: "${POSTGRES_PASSWORD}"   # use same top-level password
       POSTGRES_HOST: db
