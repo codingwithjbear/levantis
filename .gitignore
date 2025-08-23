@@ -44,7 +44,6 @@ out/
 build/
 
 # Docker
-docker-compose.*.yml
 docker/*.log
 
 # Editor / IDE
