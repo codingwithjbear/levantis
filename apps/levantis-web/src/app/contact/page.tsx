@@ -86,7 +86,7 @@ export default function ContactPage() {
 
           {success ? (
             <div className="mx-auto mt-12 max-w-2xl rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 text-center">
-              <h2 className="text-xl font-semibold text-white">Thanks—got your message ✅</h2>
+              <h2 className="text-xl font-semibold text-white">Thanks got your message ✅</h2>
               <p className="mt-2 text-sm text-gray-300">
                 We’ll reach out shortly. If it’s urgent, include more context and re‑submit.
               </p>

@@ -58,7 +58,7 @@ export default function AboutPage() {
         <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4">
           <div className="rounded-2xl border border-white/10 p-5">
             <h3 className="text-base font-semibold text-white">Managed Services</h3>
-            <p className="mt-2 text-sm text-gray-400">End‑to‑end operations: IT support, cloud, and automation.</p>
+            <p className="mt-2 text-sm text-gray-400">End-to-end operations: IT support, cloud, and automation.</p>
           </div>
           <div className="rounded-2xl border border-white/10 p-5">
             <h3 className="text-base font-semibold text-white">AI Integration</h3>
@@ -78,7 +78,7 @@ export default function AboutPage() {
         <div className="mx-auto mt-16 grid max-w-5xl grid-cols-1 gap-6 sm:grid-cols-3">
           <div className="rounded-2xl border border-white/10 p-5">
             <h3 className="text-base font-semibold text-white">Pragmatic</h3>
-            <p className="mt-2 text-sm text-gray-400">Right‑sized solutions that fit your stage and team.</p>
+            <p className="mt-2 text-sm text-gray-400">Right sized solutions that fit your stage and team.</p>
           </div>
           <div className="rounded-2xl border border-white/10 p-5">
             <h3 className="text-base font-semibold text-white">Reliable</h3>

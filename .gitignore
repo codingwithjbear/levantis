@@ -23,6 +23,7 @@ static/
 
 # Environment / secrets
 .env
+.env.*
 .env.local
 .env.*.local
 apps/levantis-api/.env
@@ -43,7 +44,6 @@ out/
 build/
 
 # Docker
-docker-compose.override.yml
 docker-compose.*.yml
 docker/*.log
 

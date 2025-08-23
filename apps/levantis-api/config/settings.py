@@ -160,3 +160,8 @@ REST_FRAMEWORK = {
     "DEFAULT_THROTTLE_CLASSES": ["rest_framework.throttling.ScopedRateThrottle"],
     "DEFAULT_THROTTLE_RATES": {"leads": "5/hour"},  # tune as needed
 }
+
+STATIC_ROOT = os.environ.get("STATIC_ROOT", "/app/staticfiles")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.environ.get("MEDIA_ROOT", "/app/mediafiles")
