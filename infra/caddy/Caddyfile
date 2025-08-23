@@ -1,0 +1,20 @@
+golevantis.com, www.golevantis.com {
+  encode zstd gzip
+
+  # API + Django static/media
+  @api path /api/* /static/* /media/*
+  handle @api {
+    reverse_proxy api:8000
+  }
+
+  # Everything else → Next.js web app
+  handle {
+    reverse_proxy web:3000
+  }
+
+  # Optional: access/error logs
+  log {
+    output stdout
+    format console
+  }
+}
